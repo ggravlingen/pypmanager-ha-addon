@@ -1,0 +1,17 @@
+#include <tunables/global>
+
+profile pypmanager flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  #include <abstractions/python>
+
+  network,
+  deny network raw,
+
+  /data/** rw,
+  /usr/local/bin/python* ix,
+  /usr/bin/** ix,
+  /bin/** ix,
+
+  deny /proc/** wl,
+  deny /sys/** wl,
+}
