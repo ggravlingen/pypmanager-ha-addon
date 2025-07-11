@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv bashio
+set -euo pipefail
+
+###############################################################################
+# 1. Persistent data folder inside the HA config share
+###############################################################################
+CONFIG_SUBDIR="/config/pypmanager-data"
+mkdir -p "${CONFIG_SUBDIR}"          # created on first start
+ln -sfn "${CONFIG_SUBDIR}" /data     # keep application code unchanged
+export APP_DATA="/data"              # pypmanager reads this
+
+###############################################################################
+# 2. Tell FastAPI the ingress prefix so static URLs resolve correctly
+###############################################################################
+INGRESS_PREFIX="$(bashio::addon.ingress_entry)"
+export UVICORN_ROOT_PATH="${INGRESS_PREFIX}"
+
+###############################################################################
+# 3. Start the application
+###############################################################################
+exec python3 -m uvicorn pypmanager.api:app \
+     --host 0.0.0.0 \
+     --port 8001 \
+     --root-path "${INGRESS_PREFIX}" \
+     --proxy-headers
