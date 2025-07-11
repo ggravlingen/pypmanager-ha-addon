@@ -1,4 +1,4 @@
-# docker build --no-cache --platform linux/arm64 --build-arg BUILD_FROM=ghcr.io/home-assistant/aarch64-base-debian:bookworm -t local/amd64-addon-pypmanager-hass:1.0.0 .
+# docker build --no-cache --platform linux/aarch64 --build-arg BUILD_FROM=ghcr.io/home-assistant/aarch64-base-debian:bookworm -t local/amd64-addon-pypmanager-hass:1.0.0 .
 ARG BUILD_FROM
 ###############################################################################
 #  Build stage – React front-end
@@ -126,7 +126,7 @@ RUN set -ex; \
 RUN mkdir -p ${ROOT_FOLDER} && \
     git clone --single-branch --branch "$APP_VERSION" https://github.com/ggravlingen/pypmanager.git ${ROOT_FOLDER} && \
     cd ${ROOT_FOLDER} && \
-    pip install .
+    pip3 install --no-cache-dir .
 
 # -----------------------------------------------------------------------------
 # Static front-end assets
