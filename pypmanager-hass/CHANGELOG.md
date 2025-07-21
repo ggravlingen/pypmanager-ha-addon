@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Test publishing the image to Github instead of building locally.
+
 ## 1.0.4
 
 - Try to fix building the image by pinning pypmanager version in a different way.
