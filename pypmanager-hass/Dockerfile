@@ -3,7 +3,7 @@ ARG BUILD_FROM
 ###############################################################################
 #  Build stage – React front-end
 ###############################################################################
-ARG APP_VERSION=bb3b2d5
+ARG APP_VERSION=2025.7.1
 FROM node:20-alpine AS frontend
 
 ENV FRONTEND_FOLDER=/tmp/pypmanager-frontend
