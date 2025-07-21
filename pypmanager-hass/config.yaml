@@ -18,5 +18,4 @@ panel_title: "Portfolio Manager"
 
 # Persistent data storage
 map:
-  - data:rw # needed for Supervisor backup logic
-  - config:rw # mounts the full /config share into the container
+  - addon_config:rw # mounts the full /config share into the container

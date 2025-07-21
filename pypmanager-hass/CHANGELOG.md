@@ -1,20 +1,20 @@
-## 1.0.0
+## 1.0.4
 
-- Initial release
+- Try to fix building the image by pinning pypmanager version in a different way.
 
-## 1.0.1
+## 1.0.3
 
-- Minor changes
+- Last release did not include all changes. Fixing this here.
 
 ## 1.0.2
 
 - Create sub-folders in configuration
 - Bump version of pypmanager
 
-## 1.0.3
+## 1.0.1
 
-- Last release did not include all changes. Fixing this here.
+- Minor changes
 
-## 1.0.4
+## 1.0.0
 
-- Try to fix building the image by pinning pypmanager version in a different way.
+- Initial release
