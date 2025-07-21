@@ -1,5 +1,5 @@
 name: "Pypmanager"
-version: "1.0.4"
+version: "1.0.5"
 slug: "pypmanager-hass"
 description: "Local portfolio management and transaction analysis tool"
 init: false
