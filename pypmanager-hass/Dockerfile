@@ -138,7 +138,7 @@ COPY --from=frontend /tmp/pypmanager/frontend/templates/index.html \
      ${ROOT_FOLDER}/frontend/templates/index.html
 
 WORKDIR ${ROOT_FOLDER}
-RUN echo "hell2o2"
+
 # -----------------------------------------------------------------------------
 # Copy S6 / run script / apparmor / anything else from rootfs
 # -----------------------------------------------------------------------------
