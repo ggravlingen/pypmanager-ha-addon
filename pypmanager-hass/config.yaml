@@ -4,6 +4,7 @@ slug: "pypmanager-hass"
 description: "Local portfolio management and transaction analysis tool"
 init: false
 startup: services
+image: ghcr.io/ggravlingen/pypmanager-ha-addon/{arch}
 
 arch:
   - aarch64
