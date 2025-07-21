@@ -9,6 +9,11 @@ mkdir -p "${CONFIG_SUBDIR}"          # created on first start
 ln -sfn "${CONFIG_SUBDIR}" /data     # keep application code unchanged
 export APP_DATA="/data"              # pypmanager reads this
 
+# Create folders for files
+mkdir -p "${CONFIG_SUBDIR}/configuration"
+mkdir -p "${CONFIG_SUBDIR}/database"
+mkdir -p "${CONFIG_SUBDIR}/transactions"
+
 ###############################################################################
 # 2. Tell FastAPI the ingress prefix so static URLs resolve correctly
 ###############################################################################
