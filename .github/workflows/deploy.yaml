@@ -1,7 +1,6 @@
 name: Deploy to GitHub Container Registry
 
 on:
-  pull_request:
   release:
     types:
       - published
