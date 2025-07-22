@@ -1,3 +1,7 @@
+## 1.0.8
+
+- New test publishing the image to Github instead of building locally.
+
 ## 1.0.7
 
 - New test publishing the image to Github instead of building locally.
