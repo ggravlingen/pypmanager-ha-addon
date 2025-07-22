@@ -1,13 +1,13 @@
 name: Builder
 
 env:
-  BUILD_ARGS: ${{ github.ref_type == 'tag' && '' || '--test' }}
+  BUILD_ARGS: "--test"
   MONITORED_FILES: "build.yaml config.yaml Dockerfile rootfs"
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -56,7 +56,6 @@ jobs:
           else
             echo "No add-on had any monitored files changed (${{ env.MONITORED_FILES }})";
           fi
-
   build:
     needs: init
     runs-on: ubuntu-latest
@@ -89,6 +88,9 @@ jobs:
           elif [[ "${{ steps.info.outputs.architectures }}" =~ ${{ matrix.arch }} ]]; then
             echo "build_arch=true" >> $GITHUB_OUTPUT;
             echo "image=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT;
+            if [[ -z "${{ github.head_ref }}" ]] && [[ "${{ github.event_name }}" == "push" ]]; then
+                echo "BUILD_ARGS=" >> $GITHUB_ENV;
+            fi
           else
             echo "${{ matrix.arch }} is not a valid arch for ${{ matrix.addon }}, skipping build";
             echo "build_arch=false" >> $GITHUB_OUTPUT;
