@@ -1,13 +1,9 @@
 name: Builder
 
 env:
-  BUILD_ARGS: "--test"
   MONITORED_FILES: "build.yaml config.yaml Dockerfile rootfs"
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -97,17 +93,26 @@ jobs:
           fi
 
       - name: Login to GitHub Container Registry
-        if: env.BUILD_ARGS != '--test'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: docker/login-action@v3.4.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set BUILD_ARGS
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "BUILD_ARGS=--test" >> $GITHUB_ENV
+          else
+            echo "BUILD_ARGS=" >> $GITHUB_ENV
+          fi
+
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
         uses: home-assistant/builder@2025.03.0
         with:
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           args: |
             ${{ env.BUILD_ARGS }} \
             --${{ matrix.arch }} \
