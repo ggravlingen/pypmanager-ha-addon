@@ -1,5 +1,5 @@
 name: "Pypmanager"
-version: "1.0.7"
+version: "1.0.8"
 slug: "pypmanager-hass"
 description: "Local portfolio management and transaction analysis tool"
 init: false
@@ -9,7 +9,6 @@ image: ghcr.io/ggravlingen/pypmanager-ha-addon/{arch}
 arch:
   - aarch64
   - amd64
-  # - armv7
 
 # Enable ingress for seamless integration
 ingress: true
