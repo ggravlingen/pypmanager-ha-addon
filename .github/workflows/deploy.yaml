@@ -2,8 +2,6 @@ name: Deploy to GitHub Container Registry
 
 on:
   pull_request:
-    branches:
-      - main
 
   release:
     types:
@@ -61,7 +59,8 @@ jobs:
         if: steps.check.outputs.build_arch == 'true'
         uses: home-assistant/builder@2025.03.0
         with:
-          push: true
+          # Fix
+          push: false
           args: |
             --${{ matrix.arch }} \
             --target /data/${{ matrix.addon }} \
